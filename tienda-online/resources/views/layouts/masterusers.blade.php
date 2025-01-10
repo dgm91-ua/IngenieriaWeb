@@ -12,6 +12,12 @@
         .navbar-brand img {
             max-height: 50px;
         }
+        .profile-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
         .btn-custom {
             background-color: #FF2D20;
             color: white;
@@ -55,8 +61,16 @@
                 <ul class="navbar-nav ms-auto">
                     @auth
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Perfil
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <!-- User Name -->
+                                {{ Auth::user()->name }}
+
+                                <!-- Profile Image -->
+                                <img 
+                                    src="{{ Auth::user()->image ? asset(Auth::user()->image) : asset('images/no-imagen.webp') }}" 
+                                    alt="Profile" 
+                                    class="profile-image me-1"
+                                >
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Editar Perfil</a></li>

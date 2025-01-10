@@ -17,7 +17,7 @@
                 <div class="carousel-caption d-none d-md-block text-start">
                     <h1 class="fw-bold">LuxuryParfum</h1>
                     <p class="lead">Las fragancias más exclusivas te esperan</p>
-                    <a href="{{ url('/catalogo') }}" class="btn btn-primary btn-lg">Ver Catálogo</a>
+                    <a href="{{ url('/productos') }}" class="btn btn-primary btn-lg">Ver Catálogo</a>
                 </div>
             </div>
             <div class="carousel-item" style="height: 70vh;">
@@ -25,15 +25,18 @@
                 <div class="carousel-caption d-none d-md-block text-start">
                     <h1 class="fw-bold">Aromas Inolvidables</h1>
                     <p class="lead">Encuentra perfumes para cada ocasión</p>
-                    <a href="{{ url('/catalogo') }}" class="btn btn-warning btn-lg">Descubrir Ahora</a>
+                    <a href="{{ route('categorias.random') }}" class="btn btn-warning btn-lg">
+                        Descubrir Ahora
+                    </a>
                 </div>
             </div>
+
             <div class="carousel-item" style="height: 70vh;">
                 <img src="{{ asset('images/carroussel/3.webp') }}" class="d-block w-100 h-100" style="object-fit: cover;" alt="Slide 3">
                 <div class="carousel-caption d-none d-md-block text-start">
                     <h1 class="fw-bold">Fragancias Premium</h1>
                     <p class="lead">Calidad, sofisticación y estilo</p>
-                    <a href="{{ url('/catalogo') }}" class="btn btn-light btn-lg">Explorar</a>
+                    <a href="{{ url('/categorias') }}" class="btn btn-light btn-lg">Explorar</a>
                 </div>
             </div>
         </div>
@@ -72,7 +75,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $category->name }}</h5>
                     <p class="card-text">{{ Str::limit($category->description, 80) }}</p>
-                    <a href="{{ url('/catalogo/'.$category->id) }}" class="btn btn-sm btn-outline-primary">Ver más</a>
+                    <a href="{{ url('/productos/'.$category->id) }}" class="btn btn-sm btn-outline-primary">Ver más</a>
                 </div>
             </div>
         </div>
