@@ -18,10 +18,11 @@ class CategoryController extends Controller
     {
         // Seleccionar una categoría aleatoria
         $categoriaAleatoria = Category::inRandomOrder()->first();
-
+        $categories = Category::all();
         if ($categoriaAleatoria) {
+
             // Redirigir a los productos de esa categoría
-            return redirect()->route('productos.index', ['categoria' => $categoriaAleatoria->id]);
+            return redirect()->route('productos.catalogo', ['category' => $categoriaAleatoria->id, 'categories' => $categories]);
         }
 
         // Si no hay categorías disponibles, redirigir con un mensaje

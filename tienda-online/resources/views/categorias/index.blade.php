@@ -18,7 +18,7 @@
                         <p class="text-center text-muted">{{ $categoria->description }}</p>
                         
                         <!-- Botón Ver Productos -->
-                        <a href="{{ route('productos.index', ['categoria' => $categoria->id]) }}" class="btn btn-primary mt-auto">Ver Productos</a>
+                        <a href="{{ route('productos.catalogo', $categoria->id) }}" class="btn btn-primary mt-auto">Ver Productos</a>
                     </div>
                 </div>
             </div>

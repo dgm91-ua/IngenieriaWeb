@@ -13,13 +13,15 @@ class CartSeeder extends Seeder
         // Obtener todos los usuarios existentes
         $users = User::all();
 
-        // Crear un carrito para cada usuario usando el factory
+        // Crear un carrito para cada usuario que no tenga uno
         $users->each(function ($user) {
-            Cart::factory()->create([
-                'user_id' => $user->id,
-            ]);
+            if (!Cart::where('user_id', $user->id)->exists()) {
+                Cart::create([
+                    'user_id' => $user->id,
+                ]);
+            }
         });
 
-        $this->command->info('Carritos creados para todos los usuarios existentes.');
+        $this->command->info('Carritos creados para todos los usuarios que no tenían.');
     }
 }

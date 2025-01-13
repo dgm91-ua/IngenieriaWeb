@@ -33,4 +33,9 @@ class Order extends Model
     {
         return $this->hasMany(OrderLine::class);
     }
+
+    public function lines()
+    {
+        return $this->hasMany(OrderLine::class);
+    }
 }

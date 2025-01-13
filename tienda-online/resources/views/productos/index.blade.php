@@ -1,7 +1,42 @@
 @extends('layouts.masterusers')
 
 @section('content')
-<div class="container py-5">
+<style>
+    .card {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .card:hover {
+        transform: scale(1.03);
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        border-radius: 0.375rem;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        border-radius: 0.375rem;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #545b62;
+    }
+
+    .form-select, .form-control {
+        border-radius: 0.375rem;
+    }
+</style>
+<div class="container py-4">
 
     <!-- Título -->
     <div class="text-center mb-4">
@@ -18,6 +53,64 @@
         </br>
         </br>
     </div>
+
+    <!-- Formulario de Filtros -->
+    <form action="{{ route('productos.catalogo') }}" method="GET" class="mb-4">
+        <div class="row">
+            <!-- Búsqueda por Nombre -->
+            <div class="col-md-4">
+                <input 
+                    type="text" 
+                    name="search" 
+                    class="form-control" 
+                    placeholder="Buscar por nombre" 
+                    value="{{ request('search') }}">
+            </div>
+
+            <!-- Filtro por Categoría -->
+            <div class="col-md-3">
+                <select name="category" class="form-select">
+                    <option value="">Todas las categorías</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <!-- Filtro por Precio -->
+            <div class="col-md-3">
+                <div class="d-flex">
+                    <input 
+                        type="number" 
+                        name="min_price" 
+                        class="form-control me-2" 
+                        placeholder="Precio mínimo" 
+                        value="{{ request('min_price') }}">
+                    <input 
+                        type="number" 
+                        name="max_price" 
+                        class="form-control" 
+                        placeholder="Precio máximo" 
+                        value="{{ request('max_price') }}">
+                </div>
+            </div>
+
+            <!-- Orden -->
+            <div class="col-md-2">
+                <select name="sort" class="form-select">
+                    <option value="az" {{ request('sort') == 'az' ? 'selected' : '' }}>Nombre A-Z</option>
+                    <option value="za" {{ request('sort') == 'za' ? 'selected' : '' }}>Nombre Z-A</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mt-3 text-end">
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+            <a href="{{ route('productos.catalogo') }}" class="btn btn-secondary">Limpiar Filtros</a>
+        </div>
+    </form>
 
     
     <!-- Productos -->
@@ -36,7 +129,7 @@
                         <p class="text-center text-success fw-bold mb-2">${{ number_format($producto->price, 2) }}</p>
                         
                         <!-- Botón Ver Detalles -->
-                        <a href="#" class="btn btn-primary mt-auto">Ver Detalles</a>
+                        <a href="{{ route('producto.show', $producto->id) }}" class="btn btn-primary mt-auto">Ver Detalles</a>
                     </div>
                 </div>
             </div>

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Cart;
+
 
 class User extends Authenticatable
 {
@@ -37,11 +39,11 @@ class User extends Authenticatable
     ];
 
     /**
-     * Un usuario puede tener muchos carritos
+     * Un usuario puede tener un solo carrito
      */
-    public function carts(): HasMany
+    public function carts()
     {
-        return $this->hasMany(Cart::class);
+        return $this->hasOne(Cart::class);
     }
 
     /**
@@ -63,5 +65,16 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+        /**
+     * Eventos de creación para el usuario.
+     */
+    protected static function booted()
+    {
+        static::created(function ($user) {
+            // Crear un carrito automáticamente para el usuario al registrarse
+            $user->carts()->create();
+        });
     }
 }

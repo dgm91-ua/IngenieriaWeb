@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         Category::truncate();
         Product::truncate();
         Cart::truncate();
+        CartLine::truncate();
         Order::truncate();
         OrderLine::truncate();
 
@@ -53,7 +54,7 @@ class DatabaseSeeder extends Seeder
         }
 
         // Crear 10 usuarios
-        User::factory(8)->create();
+        User::factory(10)->create();
 
         $categories = [
             [
@@ -85,9 +86,6 @@ class DatabaseSeeder extends Seeder
 
         // Crear 10 productos
         Product::factory(12)->create();
-
-        // Crear carritos para todos los usuarios
-        $this->call(CartSeeder::class);
 
         // Crear un pedido para el usuario 1
         $order = Order::factory()->create([

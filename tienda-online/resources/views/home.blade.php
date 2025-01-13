@@ -17,7 +17,7 @@
                 <div class="carousel-caption d-none d-md-block text-start">
                     <h1 class="fw-bold">LuxuryParfum</h1>
                     <p class="lead">Las fragancias más exclusivas te esperan</p>
-                    <a href="{{ url('/productos') }}" class="btn btn-primary btn-lg">Ver Catálogo</a>
+                    <a href="{{ route('productos.catalogo') }}" class="btn btn-primary btn-lg">Ver Catálogo</a>
                 </div>
             </div>
             <div class="carousel-item" style="height: 70vh;">
@@ -36,7 +36,7 @@
                 <div class="carousel-caption d-none d-md-block text-start">
                     <h1 class="fw-bold">Fragancias Premium</h1>
                     <p class="lead">Calidad, sofisticación y estilo</p>
-                    <a href="{{ url('/categorias') }}" class="btn btn-light btn-lg">Explorar</a>
+                    <a href="{{ route('categorias.index') }}" class="btn btn-light btn-lg">Explorar</a>
                 </div>
             </div>
         </div>
@@ -50,17 +50,6 @@
 </div>
 
 <div class="container my-5">
-
-    <!-- Barra de Búsqueda -->
-    <div class="row justify-content-center mb-4">
-        <div class="col-md-8">
-            <form action="{{ url('/buscar') }}" method="GET" class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Buscar perfumes, marcas..." name="q" aria-label="Buscar">
-                <button class="btn btn-outline-primary" type="submit">Buscar</button>
-            </form>
-        </div>
-    </div>
-
     <!-- Sección de Destacados/Categorías -->
     <h2 class="mb-4 text-center">Categorías Destacadas</h2>
     <div class="row g-4">
@@ -75,7 +64,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $category->name }}</h5>
                     <p class="card-text">{{ Str::limit($category->description, 80) }}</p>
-                    <a href="{{ url('/productos/'.$category->id) }}" class="btn btn-sm btn-outline-primary">Ver más</a>
+                    <a href="{{ route('productos.catalogo', $category->id) }}" class="btn btn-sm btn-outline-primary">Ver más</a>
                 </div>
             </div>
         </div>

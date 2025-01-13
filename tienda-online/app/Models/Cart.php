@@ -11,9 +11,7 @@ class Cart extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-    ];
+    protected $fillable = ['user_id'];
 
     /**
      * Un carrito pertenece a un usuario
@@ -26,7 +24,7 @@ class Cart extends Model
     /**
      * Un carrito tiene muchas líneas de carrito
      */
-    public function cartLines(): HasMany
+    public function lines(): HasMany
     {
         return $this->hasMany(CartLine::class);
     }
