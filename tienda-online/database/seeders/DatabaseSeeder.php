@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
                 'email'     => 'davidgarciamartinez99@gmail.com',
                 'password'  => Hash::make('1234'),
                 'role'      => 'customer',
+                'address'   => 'mi calle inventada',
                 'image'     => 'https://ui-avatars.com/api/?name=David+Garcia&background=random&size=128',
             ],
             [
@@ -45,6 +46,7 @@ class DatabaseSeeder extends Seeder
                 'email'     => 'Super.Administrador@example.com',
                 'password'  => Hash::make('1234'),
                 'role'      => 'admin',
+                'address'   => 'calle inventada del admin',
                 'image'     => 'https://ui-avatars.com/api/?name=Super+Administrador&background=random&size=128',
             ],
         ];

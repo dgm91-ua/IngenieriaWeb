@@ -31,14 +31,28 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => [
+                'required',
+                'string',
+                'lowercase',  // Fuerza que llegue en minúsculas
+                'email',
+                'max:255',
+                'unique:'.User::class
+            ],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'address'  => ['required', 'string', 'max:255'],
         ]);
+
+        $image = 'https://ui-avatars.com/api/?name=' 
+                        . urlencode($request->name)
+                        . '&background=random&size=128';
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'address' => $request->address,
+            'image' => $image,
         ]);
 
         event(new Registered($user));

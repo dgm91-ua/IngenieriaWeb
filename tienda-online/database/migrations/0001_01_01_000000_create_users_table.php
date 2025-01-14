@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('role', ['admin', 'customer'])->default('customer');
             $table->string('image')->nullable(); // Campo para la URL de la imagen
+            $table->string('address')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

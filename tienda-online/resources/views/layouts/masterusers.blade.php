@@ -57,6 +57,20 @@
             font-size: 0.75rem;
             padding: 0.4em 0.6em;
         }
+
+        .btn-admin {
+            background: linear-gradient(to right, #ff5f6d, #ffc371); /* Degradado de ejemplo */
+            color: #ffffff !important; /* Asegura que el texto sea blanco */
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            font-weight: 500; /* Un poco de grosor extra */
+        }
+
+        .btn-admin:hover {
+            background: linear-gradient(to right, #fa709a, #fee140); /* Otro degradado en hover */
+            color: #fff !important;
+        }
     </style>
 </head>
 <body class="bg-light">
@@ -88,6 +102,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('privacidad') }}">Privacidad</a>
                     </li>
+                    
                 </ul>
 
                 <!-- Search Form -->
@@ -138,6 +153,13 @@
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Editar Perfil</a></li>
                                 <li><a class="dropdown-item" href="{{ route('pedido.misPedidos') }}">Mis pedidos</a></li>
+                                @if(Auth::user()->role === 'admin')
+                                    <li class="nav-item">
+                                        <a class="btn btn-admin me-3 d-flex align-items-center" href="{{ route('admin.dashboard') }}">
+                                            <i class="bi bi-shield-lock me-2"></i> Panel Admin
+                                        </a>
+                                    </li>
+                                @endif
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
