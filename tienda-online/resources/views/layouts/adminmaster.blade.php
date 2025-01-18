@@ -13,8 +13,8 @@
       rel="stylesheet"
     >
 
-    <!-- Opcional: tu hoja de estilos adicional -->
     {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
+
 </head>
 <body>
     <!-- Barra de navegación -->
@@ -38,7 +38,6 @@
               <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Contenido del navbar -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <!-- Ejemplo de link a la home -->
@@ -46,7 +45,6 @@
                         <a class="nav-link" href="{{ url('/') }}">Inicio</a>
                     </li>
 
-                    <!-- Si quieres mostrar secciones solo para admins, comprueba el rol -->
                     @auth
                         @if(Auth::user()->role === 'admin')
                             <li class="nav-item">
@@ -58,7 +56,6 @@
                     @endauth
                 </ul>
 
-                <!-- Sección derecha del navbar -->
                 <ul class="navbar-nav ms-auto">
                     @guest
                         <!-- Si no está autenticado, mostramos login y register -->
@@ -82,6 +79,11 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                        Editar Perfil
+                                    </a>
+                                </li>
                                 <li>
                                     <a class="dropdown-item" href="#"
                                        onclick="event.preventDefault(); 
@@ -107,7 +109,7 @@
 
     <!-- Contenido principal -->
     <div class="container my-4">
-        <!-- Mensajes de estado (ej. success, error) -->
+        <!-- Mensajes de estado -->
         @if(session('success'))
             <div class="alert alert-success" role="alert">
                 {{ session('success') }}
@@ -119,7 +121,6 @@
             </div>
         @endif
 
-        <!-- Aquí se inyectará el contenido de cada vista -->
         @yield('content')
     </div>
 
@@ -128,7 +129,6 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
     </script>
 
-    <!-- Opcional: tu archivo JS adicional -->
     {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 </body>
 </html>

@@ -94,6 +94,9 @@
                         <a class="nav-link" href="{{ route('productos.catalogo') }}">Catálogo</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('categorias.index') }}">Categorías</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('nosotros') }}">Nosotros</a>
                     </li>
                     <li class="nav-item">
@@ -151,7 +154,7 @@
                                     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Editar Perfil</a></li>
+                                <li><a class="dropdown-item" href="{{ route('profile.show') }}">Mi Perfil</a></li>
                                 <li><a class="dropdown-item" href="{{ route('pedido.misPedidos') }}">Mis pedidos</a></li>
                                 @if(Auth::user()->role === 'admin')
                                     <li class="nav-item">

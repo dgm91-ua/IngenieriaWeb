@@ -47,15 +47,14 @@ class RegisteredUserController extends Controller
                         . urlencode($request->name)
                         . '&background=random&size=128';
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'address' => $request->address,
-            'image' => $image,
-        ]);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->address = $request->address;
+        $user->image = $request->image;
 
-        event(new Registered($user));
+        $user->save();
 
         Auth::login($user);
 

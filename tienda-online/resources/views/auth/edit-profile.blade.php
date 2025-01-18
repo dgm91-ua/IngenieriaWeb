@@ -5,14 +5,15 @@
     <div class="col-md-8">
         <div class="card shadow">
             <div class="card-body">
-                <h4 class="card-title text-center mb-4">Registrarse</h4>
-                <form method="POST" action="{{ route('register') }}">
+                <h4 class="card-title text-center mb-4">Editar Perfil</h4>
+                <form method="POST" action="{{ route('profile.update') }}">
                     @csrf
+                    @method('PUT')
 
                     <!-- Nombre -->
                     <div class="mb-3">
                         <label for="name" class="form-label">Nombre</label>
-                        <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" required autofocus>
+                        <input type="text" id="name" name="name" class="form-control" value="{{ old('name', auth()->user()->name) }}" required>
                         @error('name')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -21,7 +22,7 @@
                     <!-- Correo Electrónico -->
                     <div class="mb-3">
                         <label for="email" class="form-label">Correo Electrónico</label>
-                        <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" required>
+                        <input type="email" id="email" name="email" class="form-control" value="{{ old('email', auth()->user()->email) }}" required>
                         @error('email')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -30,7 +31,7 @@
                     <!-- Dirección -->
                     <div class="mb-3">
                         <label for="address" class="form-label">Dirección</label>
-                        <input type="text" id="address" name="address" class="form-control" value="{{ old('address') }}" required>
+                        <input type="text" id="address" name="address" class="form-control" value="{{ old('address', auth()->user()->address) }}" required>
                         @error('address')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -38,8 +39,8 @@
 
                     <!-- Contraseña -->
                     <div class="mb-3">
-                        <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" id="password" name="password" class="form-control" required>
+                        <label for="password" class="form-label">Nueva Contraseña (opcional)</label>
+                        <input type="password" id="password" name="password" class="form-control">
                         @error('password')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -48,7 +49,7 @@
                     <!-- Confirmar Contraseña -->
                     <div class="mb-3">
                         <label for="password_confirmation" class="form-label">Confirmar Contraseña</label>
-                        <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
+                        <input type="password" id="password_confirmation" name="password_confirmation" class="form-control">
                         @error('password_confirmation')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -56,8 +57,8 @@
 
                     <!-- Botones -->
                     <div class="d-flex justify-content-between align-items-center mt-4">
-                        <a class="text-decoration-none text-muted" href="{{ route('login') }}">¿Ya registrado?</a>
-                        <button type="submit" class="btn btn-custom">Registrarme</button>
+                        <a class="text-decoration-none text-muted" href="{{ route('profile.show') }}">Cancelar</a>
+                        <button type="submit" class="btn btn-custom">Actualizar Perfil</button>
                     </div>
                 </form>
             </div>
